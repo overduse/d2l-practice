@@ -9,26 +9,22 @@ file: d2l-practice/modern-cnn/AlexNet/dataset.py
 
 """
 
-#TODO:data argument.
 train_transform = v2.Compose([
+    v2.ToImage(),
+    v2.ToDtype(torch.uint8, scale=True),
     v2.Resize((224, 224)),
     v2.RandomCrop(224, padding=4),
-    v2.RandomHorizontalFlip(),
-    # v2.RandomRotation(10),
-    v2.ColorJitter(brightness=0.2, contrast=0.2),
-    # v2.ToTensor(),
-    v2.ToImage(),
+    v2.RandomRotation((-10, 10)),
     v2.ToDtype(torch.float32, scale=True),
-
-    v2.Normalize((0.5,), (0.5,)),
+    v2.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225)),
 ])
 
 test_transform = v2.Compose([
-    v2.Resize((224, 224)),
-    # v2.ToTensor(),
     v2.ToImage(),
+    v2.ToDtype(torch.uint8, scale=True),
+    v2.Resize((224, 224)),
     v2.ToDtype(torch.float32, scale=True),
-    v2.Normalize((0.5,), (0.5,)),
+    v2.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225)),
 ])
 
 # Download training data from open datasets.

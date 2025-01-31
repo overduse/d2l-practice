@@ -15,10 +15,10 @@ def main():
     parent_dir = Path(model_path).parent
     parent_dir.mkdir(parents=True, exist_ok=True)
 
-    # init_input = next(iter(training_data))[0].unsqueeze(0).to(device)
+    init_input = next(iter(training_data))[0].unsqueeze(0).to(device) # dummy input
 
     model = AlexNet().to(device)
-    # model.apply_init(init_input, init_cnn)
+    model.apply_init(init_input, init_cnn)
 
 
     loss_fn = nn.CrossEntropyLoss()

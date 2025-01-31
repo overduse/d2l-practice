@@ -36,7 +36,16 @@ class AlexNet(nn.Module):
             nn.LazyLinear(4096), nn.ReLU(), nn.Dropout(p=0.5),
             nn.LazyLinear(num_classes)
         )
-        self.net.apply(init_cnn)
+        # self.net.apply(init_cnn)
+
+    def apply_init(self, input, init=None):
+        """initial function."""
+
+        self.forward(input)
+        if init is not None:
+            self.net.apply(init)
+
+
 
     def layer_summary(self, X_shape):
         X = torch.randn(*X_shape)
@@ -50,5 +59,5 @@ class AlexNet(nn.Module):
 
 if __name__ == '__main__':
     model = AlexNet()
+    model.layer_summary((1, 3, 224, 224))
     print(model)
-    model.layer_summary((1, 1, 224, 224))
