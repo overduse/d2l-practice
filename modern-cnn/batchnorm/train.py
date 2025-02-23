@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from model_googlenet import GoogLeNet, model_path, init_cnn, device
+from model_bnlenet import BNLeNet, model_path, init_cnn, device
 from dataset import train_dataloader, test_dataloader, training_data
 from loop import train, test
 
@@ -8,7 +8,7 @@ from time import time
 from pathlib import Path
 
 """
-File: /d2l-practise/modern-cnn/GoogLeNet/train.py
+File: /d2l-practise/modern-cnn/batchnorm/train.py
 
 """
 
@@ -24,15 +24,17 @@ def main():
     init_input = next(iter(training_data))[0].unsqueeze(0).to(device) # dummy input
     num_classes = 10
 
-    model = GoogLeNet(num_classes).to(device)
+    model = BNLeNet(num_classes).to(device).eval()
     model.apply_init(init_input, init_cnn)
+
+    model.train()
 
 
     loss_fn = nn.CrossEntropyLoss()
     optimizer = torch.optim.SGD(model.parameters(), lr=lr)
 
     # setting log file
-    log_path = parent_dir / "googlenet.log"
+    log_path = parent_dir / "bnlenet.log"
     with open(log_path, 'w') as log_file:
         log_file.write("Epoch, Test Accuracy, Test Loss, Training Time (s))\n")
 
