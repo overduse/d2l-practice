@@ -5,7 +5,7 @@ import torch
 from torch.utils.data import DataLoader
 
 """
-file: d2l-practice/modern-cnn/batchnorm/dataset.py
+file: d2l-practice/modern-cnn/ResNet/dataset.py
 
 """
 
