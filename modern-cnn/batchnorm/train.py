@@ -43,7 +43,6 @@ def main():
     for t in range(epochs):
         epoch_start_time = time()
 
-
         print(f"Epoch {t+1}\n-----------------------------------------------")
         train(train_dataloader, model, loss_fn, optimizer, device)
         training_time = time() - epoch_start_time
