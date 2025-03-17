@@ -8,8 +8,6 @@ from utils.utils import reshape
 class GRU(nn.Module):
     def __init__(self, num_inputs, num_hiddens, sigma=0.01):
         super(GRU, self).__init__()
-        # d2l.Module.__init__(self)
-        # self.save_hyperparameters()
 
         self.num_inputs = num_inputs
         self.num_hiddens = num_hiddens
